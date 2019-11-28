@@ -56,27 +56,25 @@ with open(input_path, newline='') as csvfile:
                 greatest_decrease = change
                 decrease_date = date
 
-print("")
-print("Financial Analysis")
-print("---------------------------------")
-print(f"Total Months:  {month_count}")
-print(f"Total:  ${net_total}")
-# average change uses one less month in calculation
-# average change is displayed with two decimal points
-print(f"Average change:  {aggregate_change/(month_count-1):.2f}")
-print(f"Greatest increase in profits:  {increase_date}  (${greatest_increase})")
-print(f"Greatest decrease in profits:  {decrease_date}  (${greatest_decrease})")
-print("")
+// d(ouble)_print to both the terminal and to a writer (for csv file)
+def d_print(text, writer):
+    print(text)
+    writer.writerow([text])
 
-# repeat print, but into a csv file
+print('')
+
 with open(output_path, 'w', newline='') as csvfile:
     csvwriter = csv.writer(csvfile, delimiter=',')
-    csvwriter.writerow(["Financial Analysis"])
-    csvwriter.writerow(["---------------------------------"])
-    csvwriter.writerow([f"Total Months:  {month_count}"])
-    csvwriter.writerow([f"Total:  ${net_total}"])
+    d_print("Financial Analysis", csvwriter)
+    d_print("---------------------------------", csvwriter)
+    d_print(f"Total Months:  {month_count}", csvwriter)
+    d_print(f"Total:  ${net_total}", csvwriter)
     # average change uses one less month in calculation
     # average change is displayed with two decimal points
-    csvwriter.writerow([f"Average change:  {aggregate_change/(month_count-1):.2f}"])
-    csvwriter.writerow([f"Greatest increase in profits:  {increase_date}  (${greatest_increase})"])
-    csvwriter.writerow([f"Greatest decrease in profits:  {decrease_date}  (${greatest_decrease})"])
+    d_print(f"Average change:  {aggregate_change/(month_count-1):.2f}", csvwriter)
+    d_print(f"Greatest increase in profits:  {increase_date}  (${greatest_increase})",
+        csvwriter)
+    d_print(f"Greatest decrease in profits:  {decrease_date}  (${greatest_decrease})",
+        csvwriter)
+
+print('')

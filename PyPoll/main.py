@@ -44,33 +44,28 @@ for candidate in candidate_tally:
     if  candidate_tally[candidate] > candidate_tally[winner]:
         winner = candidate
 
-print("")
-print("Election Results")
-print("---------------------------------")
-print(f"Total Votes:  {vote_total}")
-print("---------------------------------")
-for candidate in candidate_tally:
-    tally = candidate_tally[candidate]
-    percentage = (tally/vote_total) * 100
-    # percentage is displayed with two decimal points
-    print(f"{candidate}: {percentage:.2f}%  ({tally})")
-print("---------------------------------")
-print(f"Winner is {winner}")
-print("---------------------------------")
-print("")
 
-# repeat print, but into a csv file
+# d(ouble)_print to both the terminal and to a writer (for csv file)
+def d_print(text, writer):
+    print(text)
+    writer.writerow([text])
+
+
+print("")
 with open(output_path, 'w', newline='') as csvfile:
     csvwriter = csv.writer(csvfile, delimiter=',')
-    csvwriter.writerow(["Election Results"])
-    csvwriter.writerow(["---------------------------------"])
-    csvwriter.writerow([f"Total Votes:  {vote_total}"])
-    csvwriter.writerow(["---------------------------------"])
+    d_print("Election Results", csvwriter)
+    d_print("---------------------------------", csvwriter)
+    d_print(f"Total Votes:  {vote_total}", csvwriter)
+    d_print("---------------------------------", csvwriter)
     for candidate in candidate_tally:
         tally = candidate_tally[candidate]
         percentage = (tally/vote_total) * 100
         # percentage is displayed with two decimal points
-        csvwriter.writerow([f"{candidate}: {percentage:.2f}%  ({tally})"])
-    csvwriter.writerow(["---------------------------------"])
-    csvwriter.writerow([f"Winner is {winner}"])
-    csvwriter.writerow(["---------------------------------"])
+        d_print(f"{candidate}: {percentage:.2f}%  ({tally})", csvwriter)
+    d_print("---------------------------------", csvwriter)
+    d_print(f"Winner is {winner}", csvwriter)
+    d_print("---------------------------------", csvwriter)
+
+
+print("")
