@@ -7,7 +7,6 @@ import os
 
 # set up file interfaces
 inputfile = 'election_data.csv'
-#inputfile = 'test_file.csv'       # truncated version for testing
 outputfile = 'election_analysis.csv'
 input_path = os.path.join('.', 'Resources', inputfile)
 output_path = os.path.join('.', 'Output', outputfile)

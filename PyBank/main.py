@@ -7,7 +7,6 @@ import os
 
 # set up file interfaces
 inputfile = 'budget_data.csv'
-#inputfile = "test_file.csv"  # truncated version for testing
 outputfile = 'financial_analysis.csv'
 input_path = os.path.join('.', 'Resources', inputfile)
 output_path = os.path.join('.', 'Output', outputfile)
@@ -56,7 +55,7 @@ with open(input_path, newline='') as csvfile:
                 greatest_decrease = change
                 decrease_date = date
 
-// d(ouble)_print to both the terminal and to a writer (for csv file)
+# d(ouble)_print to both the terminal and to a writer (for csv file)
 def d_print(text, writer):
     print(text)
     writer.writerow([text])
